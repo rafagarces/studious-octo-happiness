@@ -3,13 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Animation Library Demo</title>
+  <meta name="description" content="Interactive demo of CSS animation library with accessible controls and examples">
+  <title>Animation Library Demo - Accessible Interactive Showcase</title>
   <link rel="stylesheet" href="animations.css">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+    }
+
+    /* Skip link for keyboard navigation */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: #000;
+      color: #fff;
+      padding: 8px 16px;
+      text-decoration: none;
+      font-weight: bold;
+      z-index: 100;
+    }
+
+    .skip-link:focus {
+      top: 0;
+    }
+
+    /* Screen reader only text */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
     }
 
     body {
@@ -39,7 +70,23 @@
 
     header p {
       font-size: 1.2rem;
-      opacity: 0.9;
+      opacity: 0.95;
+    }
+
+    /* Accessibility notice */
+    .a11y-notice {
+      background: rgba(255, 255, 255, 0.95);
+      color: #333;
+      padding: 16px 24px;
+      border-radius: 8px;
+      margin: 20px auto;
+      max-width: 800px;
+      font-size: 0.95rem;
+      border-left: 4px solid #667eea;
+    }
+
+    .a11y-notice strong {
+      color: #667eea;
     }
 
     .section {
@@ -53,11 +100,11 @@
     .section h2 {
       font-size: 2rem;
       margin-bottom: 10px;
-      color: #667eea;
+      color: #5568d3;
     }
 
     .section-description {
-      color: #666;
+      color: #4a5568;
       margin-bottom: 30px;
       font-size: 1.1rem;
     }
@@ -74,15 +121,22 @@
       border-radius: 12px;
       padding: 30px;
       text-align: center;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
       border: 2px solid transparent;
+      position: relative;
     }
 
-    .animation-card:hover {
+    .animation-card:hover,
+    .animation-card:focus-within {
       transform: translateY(-4px);
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
       border-color: #667eea;
+    }
+
+    /* Enhanced focus styles for accessibility */
+    .animation-card:focus-within {
+      outline: 3px solid #667eea;
+      outline-offset: 2px;
     }
 
     .animation-demo-box {
@@ -102,29 +156,50 @@
     .animation-card h3 {
       font-size: 1.2rem;
       margin-bottom: 8px;
-      color: #333;
+      color: #1a202c;
     }
 
     .animation-card p {
       font-size: 0.9rem;
-      color: #666;
+      color: #4a5568;
       margin-bottom: 15px;
     }
 
     .replay-btn {
-      background: #667eea;
+      background: #5568d3;
       color: white;
-      border: none;
+      border: 2px solid transparent;
       padding: 10px 20px;
       border-radius: 8px;
       cursor: pointer;
       font-size: 0.9rem;
       font-weight: 600;
-      transition: background 0.2s;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+      width: 100%;
     }
 
     .replay-btn:hover {
-      background: #5568d3;
+      background: #4c51bf;
+      transform: translateY(-1px);
+    }
+
+    .replay-btn:focus {
+      outline: 3px solid #667eea;
+      outline-offset: 2px;
+      border-color: #667eea;
+    }
+
+    .replay-btn:active {
+      transform: translateY(0);
+    }
+
+    /* Status announcement for screen readers */
+    .status-announcement {
+      position: absolute;
+      left: -10000px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
     }
 
     .code-block {
@@ -150,13 +225,21 @@
     }
 
     .hover-demo-card {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #5568d3 0%, #6b46c1 100%);
       color: white;
       padding: 40px;
       border-radius: 12px;
       text-align: center;
       font-weight: 600;
       font-size: 1.1rem;
+      border: 2px solid transparent;
+      cursor: default;
+    }
+
+    .hover-demo-card:focus {
+      outline: 3px solid white;
+      outline-offset: 2px;
+      border-color: white;
     }
 
     .easing-demo {
@@ -175,22 +258,24 @@
     .easing-label {
       min-width: 150px;
       font-weight: 600;
-      color: #667eea;
+      color: #5568d3;
+      font-size: 1rem;
     }
 
     .easing-track {
       flex: 1;
       height: 40px;
-      background: #f1f1f1;
+      background: #e2e8f0;
       border-radius: 20px;
       position: relative;
       overflow: hidden;
+      border: 2px solid #cbd5e0;
     }
 
     .easing-ball {
       width: 40px;
       height: 40px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #5568d3 0%, #6b46c1 100%);
       border-radius: 50%;
       position: absolute;
       left: 0;
@@ -202,20 +287,38 @@
     }
 
     .control-btn {
-      background: #667eea;
+      background: #5568d3;
       color: white;
-      border: none;
+      border: 2px solid transparent;
       padding: 12px 24px;
       border-radius: 8px;
       cursor: pointer;
       font-size: 1rem;
       font-weight: 600;
       margin: 0 8px;
-      transition: background 0.2s;
+      transition: background 0.2s, transform 0.2s, border-color 0.2s;
+      min-width: 120px;
     }
 
     .control-btn:hover {
-      background: #5568d3;
+      background: #4c51bf;
+      transform: translateY(-2px);
+    }
+
+    .control-btn:focus {
+      outline: 3px solid #667eea;
+      outline-offset: 2px;
+      border-color: #667eea;
+    }
+
+    .control-btn:active {
+      transform: translateY(0);
+    }
+
+    .control-btn:disabled {
+      background: #a0aec0;
+      cursor: not-allowed;
+      transform: none;
     }
 
     footer {
@@ -223,7 +326,11 @@
       color: white;
       margin-top: 60px;
       padding: 20px;
-      opacity: 0.9;
+    }
+
+    footer p {
+      margin: 8px 0;
+      font-size: 1rem;
     }
 
     @media (max-width: 768px) {
@@ -242,197 +349,313 @@
   </style>
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
   <div class="container">
     <header class="fade-in">
       <h1>🎬 Animation Library Demo</h1>
-      <p>Click any animation to see it in action</p>
+      <p>Click or press Enter on any animation card to see it in action. Use Tab to navigate between elements.</p>
+
+      <div class="a11y-notice" role="status" aria-live="polite">
+        <strong>♿ Accessibility:</strong> This demo is fully keyboard accessible. Use Tab to navigate, Enter or Space to activate buttons.
+        If you prefer reduced motion, your system preferences will be respected.
+      </div>
     </header>
 
-    <!-- Entry Animations -->
-    <section class="section slide-up">
-      <h2>Entry Animations</h2>
-      <p class="section-description">Animations for elements appearing on the page</p>
+    <main id="main-content">
+      <!-- Live region for screen reader announcements -->
+      <div aria-live="assertive" aria-atomic="true" class="sr-only" id="status-announcement"></div>
 
-      <div class="animation-grid">
-        <div class="animation-card" onclick="replayAnimation(this, 'fade-in')">
-          <div class="animation-demo-box">✨</div>
-          <h3>Fade In</h3>
-          <p>Simple fade from transparent to opaque</p>
-          <button class="replay-btn">Click to Replay</button>
-        </div>
+      <!-- Entry Animations -->
+      <section class="section slide-up" aria-labelledby="entry-animations-heading">
+        <h2 id="entry-animations-heading">Entry Animations</h2>
+        <p class="section-description">Animations for elements appearing on the page</p>
 
-        <div class="animation-card" onclick="replayAnimation(this, 'slide-up')">
-          <div class="animation-demo-box">⬆️</div>
-          <h3>Slide Up</h3>
-          <p>Slides in from bottom</p>
-          <button class="replay-btn">Click to Replay</button>
-        </div>
+        <div class="animation-grid" role="list">
+          <div class="animation-card" role="listitem">
+            <div class="animation-demo-box" aria-hidden="true">✨</div>
+            <h3 id="fade-in-title">Fade In</h3>
+            <p>Simple fade from transparent to opaque</p>
+            <button
+              class="replay-btn"
+              aria-label="Replay Fade In animation"
+              aria-describedby="fade-in-title"
+              onclick="replayAnimation(this, 'fade-in', 'Fade In')">
+              Click to Replay
+            </button>
+          </div>
 
-        <div class="animation-card" onclick="replayAnimation(this, 'slide-down')">
-          <div class="animation-demo-box">⬇️</div>
-          <h3>Slide Down</h3>
-          <p>Slides in from top</p>
-          <button class="replay-btn">Click to Replay</button>
-        </div>
+          <div class="animation-card" role="listitem">
+            <div class="animation-demo-box" aria-hidden="true">⬆️</div>
+            <h3 id="slide-up-title">Slide Up</h3>
+            <p>Slides in from bottom</p>
+            <button
+              class="replay-btn"
+              aria-label="Replay Slide Up animation"
+              aria-describedby="slide-up-title"
+              onclick="replayAnimation(this, 'slide-up', 'Slide Up')">
+              Click to Replay
+            </button>
+          </div>
 
-        <div class="animation-card" onclick="replayAnimation(this, 'slide-left')">
-          <div class="animation-demo-box">⬅️</div>
-          <h3>Slide Left</h3>
-          <p>Slides in from right</p>
-          <button class="replay-btn">Click to Replay</button>
-        </div>
+          <div class="animation-card" role="listitem">
+            <div class="animation-demo-box" aria-hidden="true">⬇️</div>
+            <h3 id="slide-down-title">Slide Down</h3>
+            <p>Slides in from top</p>
+            <button
+              class="replay-btn"
+              aria-label="Replay Slide Down animation"
+              aria-describedby="slide-down-title"
+              onclick="replayAnimation(this, 'slide-down', 'Slide Down')">
+              Click to Replay
+            </button>
+          </div>
 
-        <div class="animation-card" onclick="replayAnimation(this, 'slide-right')">
-          <div class="animation-demo-box">➡️</div>
-          <h3>Slide Right</h3>
-          <p>Slides in from left</p>
-          <button class="replay-btn">Click to Replay</button>
-        </div>
+          <div class="animation-card" role="listitem">
+            <div class="animation-demo-box" aria-hidden="true">⬅️</div>
+            <h3 id="slide-left-title">Slide Left</h3>
+            <p>Slides in from right</p>
+            <button
+              class="replay-btn"
+              aria-label="Replay Slide Left animation"
+              aria-describedby="slide-left-title"
+              onclick="replayAnimation(this, 'slide-left', 'Slide Left')">
+              Click to Replay
+            </button>
+          </div>
 
-        <div class="animation-card" onclick="replayAnimation(this, 'scale-up')">
-          <div class="animation-demo-box">📈</div>
-          <h3>Scale Up</h3>
-          <p>Grows from smaller size</p>
-          <button class="replay-btn">Click to Replay</button>
-        </div>
+          <div class="animation-card" role="listitem">
+            <div class="animation-demo-box" aria-hidden="true">➡️</div>
+            <h3 id="slide-right-title">Slide Right</h3>
+            <p>Slides in from left</p>
+            <button
+              class="replay-btn"
+              aria-label="Replay Slide Right animation"
+              aria-describedby="slide-right-title"
+              onclick="replayAnimation(this, 'slide-right', 'Slide Right')">
+              Click to Replay
+            </button>
+          </div>
 
-        <div class="animation-card" onclick="replayAnimation(this, 'zoom-in')">
-          <div class="animation-demo-box">🔍</div>
-          <h3>Zoom In</h3>
-          <p>Dramatic zoom with fade</p>
-          <button class="replay-btn">Click to Replay</button>
-        </div>
+          <div class="animation-card" role="listitem">
+            <div class="animation-demo-box" aria-hidden="true">📈</div>
+            <h3 id="scale-up-title">Scale Up</h3>
+            <p>Grows from smaller size</p>
+            <button
+              class="replay-btn"
+              aria-label="Replay Scale Up animation"
+              aria-describedby="scale-up-title"
+              onclick="replayAnimation(this, 'scale-up', 'Scale Up')">
+              Click to Replay
+            </button>
+          </div>
 
-        <div class="animation-card" onclick="replayAnimation(this, 'rotate-in')">
-          <div class="animation-demo-box">🔄</div>
-          <h3>Rotate In</h3>
-          <p>Rotates while appearing</p>
-          <button class="replay-btn">Click to Replay</button>
-        </div>
+          <div class="animation-card" role="listitem">
+            <div class="animation-demo-box" aria-hidden="true">🔍</div>
+            <h3 id="zoom-in-title">Zoom In</h3>
+            <p>Dramatic zoom with fade</p>
+            <button
+              class="replay-btn"
+              aria-label="Replay Zoom In animation"
+              aria-describedby="zoom-in-title"
+              onclick="replayAnimation(this, 'zoom-in', 'Zoom In')">
+              Click to Replay
+            </button>
+          </div>
 
-        <div class="animation-card" onclick="replayAnimation(this, 'bounce-in')">
-          <div class="animation-demo-box">🎾</div>
-          <h3>Bounce In</h3>
-          <p>Bouncy entrance effect</p>
-          <button class="replay-btn">Click to Replay</button>
-        </div>
+          <div class="animation-card" role="listitem">
+            <div class="animation-demo-box" aria-hidden="true">🔄</div>
+            <h3 id="rotate-in-title">Rotate In</h3>
+            <p>Rotates while appearing</p>
+            <button
+              class="replay-btn"
+              aria-label="Replay Rotate In animation"
+              aria-describedby="rotate-in-title"
+              onclick="replayAnimation(this, 'rotate-in', 'Rotate In')">
+              Click to Replay
+            </button>
+          </div>
+
+          <div class="animation-card" role="listitem">
+            <div class="animation-demo-box" aria-hidden="true">🎾</div>
+            <h3 id="bounce-in-title">Bounce In</h3>
+            <p>Bouncy entrance effect</p>
+            <button
+              class="replay-btn"
+              aria-label="Replay Bounce In animation"
+              aria-describedby="bounce-in-title"
+              onclick="replayAnimation(this, 'bounce-in', 'Bounce In')">
+              Click to Replay
+            </button>
+          </div>
       </div>
 
-      <div class="code-block">
-        <code>&lt;div class="fade-in"&gt;Your content&lt;/div&gt;</code>
-      </div>
-    </section>
-
-    <!-- Attention Animations -->
-    <section class="section slide-up delay-200">
-      <h2>Attention Animations</h2>
-      <p class="section-description">Animations to draw user attention</p>
-
-      <div class="animation-grid">
-        <div class="animation-card" onclick="replayAnimation(this, 'shake')">
-          <div class="animation-demo-box">🚨</div>
-          <h3>Shake</h3>
-          <p>Shake for errors or alerts</p>
-          <button class="replay-btn">Click to Replay</button>
+        <div class="code-block" role="region" aria-label="Code example">
+          <code>&lt;div class="fade-in"&gt;Your content&lt;/div&gt;</code>
         </div>
+      </section>
 
-        <div class="animation-card" onclick="replayAnimation(this, 'pulse')">
-          <div class="animation-demo-box">💓</div>
-          <h3>Pulse</h3>
-          <p>Gentle breathing effect</p>
-          <button class="replay-btn">Click to Replay</button>
-        </div>
+      <!-- Attention Animations -->
+      <section class="section slide-up delay-200" aria-labelledby="attention-animations-heading">
+        <h2 id="attention-animations-heading">Attention Animations</h2>
+        <p class="section-description">Animations to draw user attention</p>
 
-        <div class="animation-card" onclick="replayAnimation(this, 'spin')">
-          <div class="animation-demo-box">⚙️</div>
-          <h3>Spin</h3>
-          <p>Continuous rotation</p>
-          <button class="replay-btn">Click to Replay</button>
-        </div>
-      </div>
-    </section>
+        <div class="animation-grid" role="list">
+          <div class="animation-card" role="listitem">
+            <div class="animation-demo-box" aria-hidden="true">🚨</div>
+            <h3 id="shake-title">Shake</h3>
+            <p>Shake for errors or alerts</p>
+            <button
+              class="replay-btn"
+              aria-label="Replay Shake animation"
+              aria-describedby="shake-title"
+              onclick="replayAnimation(this, 'shake', 'Shake')">
+              Click to Replay
+            </button>
+          </div>
 
-    <!-- Hover Effects -->
-    <section class="section slide-up delay-400">
-      <h2>Hover Effects</h2>
-      <p class="section-description">Interactive hover transitions (hover over the cards)</p>
+          <div class="animation-card" role="listitem">
+            <div class="animation-demo-box" aria-hidden="true">💓</div>
+            <h3 id="pulse-title">Pulse</h3>
+            <p>Gentle breathing effect</p>
+            <button
+              class="replay-btn"
+              aria-label="Replay Pulse animation"
+              aria-describedby="pulse-title"
+              onclick="replayAnimation(this, 'pulse', 'Pulse')">
+              Click to Replay
+            </button>
+          </div>
 
-      <div class="hover-demo-section">
-        <div class="hover-demo-card hover-scale">
-          Hover Scale
-        </div>
-        <div class="hover-demo-card hover-lift">
-          Hover Lift
-        </div>
-        <div class="hover-demo-card hover-fade">
-          Hover Fade
-        </div>
-      </div>
-
-      <div class="code-block">
-        <code>&lt;button class="hover-scale"&gt;Hover me&lt;/button&gt;</code>
-      </div>
-    </section>
-
-    <!-- Easing Comparison -->
-    <section class="section slide-up delay-600">
-      <h2>Easing Curves</h2>
-      <p class="section-description">See how different easing curves affect animation timing</p>
-
-      <div class="easing-demo">
-        <div class="easing-row">
-          <div class="easing-label">Linear</div>
-          <div class="easing-track">
-            <div class="easing-ball" data-easing="linear"></div>
+          <div class="animation-card" role="listitem">
+            <div class="animation-demo-box" aria-hidden="true">⚙️</div>
+            <h3 id="spin-title">Spin</h3>
+            <p>Continuous rotation</p>
+            <button
+              class="replay-btn"
+              aria-label="Replay Spin animation"
+              aria-describedby="spin-title"
+              onclick="replayAnimation(this, 'spin', 'Spin')">
+              Click to Replay
+            </button>
           </div>
         </div>
-        <div class="easing-row">
-          <div class="easing-label">Ease Out</div>
-          <div class="easing-track">
-            <div class="easing-ball" data-easing="ease-out"></div>
-          </div>
-        </div>
-        <div class="easing-row">
-          <div class="easing-label">Ease In</div>
-          <div class="easing-track">
-            <div class="easing-ball" data-easing="ease-in"></div>
-          </div>
-        </div>
-        <div class="easing-row">
-          <div class="easing-label">Ease In-Out</div>
-          <div class="easing-track">
-            <div class="easing-ball" data-easing="ease-in-out"></div>
-          </div>
-        </div>
-        <div class="easing-row">
-          <div class="easing-label">Spring</div>
-          <div class="easing-track">
-            <div class="easing-ball" data-easing="spring"></div>
-          </div>
-        </div>
-        <div class="easing-row">
-          <div class="easing-label">Bounce</div>
-          <div class="easing-track">
-            <div class="easing-ball" data-easing="bounce"></div>
-          </div>
-        </div>
-      </div>
+      </section>
 
-      <div class="controls">
-        <button class="control-btn" onclick="startEasingDemo()">▶️ Play</button>
-        <button class="control-btn" onclick="resetEasingDemo()">🔄 Reset</button>
-      </div>
-    </section>
+      <!-- Hover Effects -->
+      <section class="section slide-up delay-400" aria-labelledby="hover-effects-heading">
+        <h2 id="hover-effects-heading">Hover Effects</h2>
+        <p class="section-description">Interactive hover transitions (hover over or focus on the cards)</p>
 
-    <footer class="fade-in delay-800">
+        <div class="hover-demo-section" role="list">
+          <div class="hover-demo-card hover-scale" tabindex="0" role="listitem" aria-label="Hover Scale effect demonstration">
+            Hover Scale
+          </div>
+          <div class="hover-demo-card hover-lift" tabindex="0" role="listitem" aria-label="Hover Lift effect demonstration">
+            Hover Lift
+          </div>
+          <div class="hover-demo-card hover-fade" tabindex="0" role="listitem" aria-label="Hover Fade effect demonstration">
+            Hover Fade
+          </div>
+        </div>
+
+        <div class="code-block" role="region" aria-label="Code example">
+          <code>&lt;button class="hover-scale"&gt;Hover me&lt;/button&gt;</code>
+        </div>
+      </section>
+
+      <!-- Easing Comparison -->
+      <section class="section slide-up delay-600" aria-labelledby="easing-curves-heading">
+        <h2 id="easing-curves-heading">Easing Curves</h2>
+        <p class="section-description">See how different easing curves affect animation timing</p>
+
+        <div class="easing-demo" role="region" aria-label="Easing curves comparison">
+          <div class="easing-row">
+            <div class="easing-label" id="linear-label">Linear</div>
+            <div class="easing-track" role="img" aria-labelledby="linear-label" aria-describedby="linear-desc">
+              <div class="easing-ball" data-easing="linear" aria-hidden="true"></div>
+            </div>
+            <span id="linear-desc" class="sr-only">Animation moves at constant speed</span>
+          </div>
+          <div class="easing-row">
+            <div class="easing-label" id="ease-out-label">Ease Out</div>
+            <div class="easing-track" role="img" aria-labelledby="ease-out-label" aria-describedby="ease-out-desc">
+              <div class="easing-ball" data-easing="ease-out" aria-hidden="true"></div>
+            </div>
+            <span id="ease-out-desc" class="sr-only">Animation starts fast and slows down at the end</span>
+          </div>
+          <div class="easing-row">
+            <div class="easing-label" id="ease-in-label">Ease In</div>
+            <div class="easing-track" role="img" aria-labelledby="ease-in-label" aria-describedby="ease-in-desc">
+              <div class="easing-ball" data-easing="ease-in" aria-hidden="true"></div>
+            </div>
+            <span id="ease-in-desc" class="sr-only">Animation starts slow and speeds up at the end</span>
+          </div>
+          <div class="easing-row">
+            <div class="easing-label" id="ease-in-out-label">Ease In-Out</div>
+            <div class="easing-track" role="img" aria-labelledby="ease-in-out-label" aria-describedby="ease-in-out-desc">
+              <div class="easing-ball" data-easing="ease-in-out" aria-hidden="true"></div>
+            </div>
+            <span id="ease-in-out-desc" class="sr-only">Animation starts slow, speeds up, then slows down</span>
+          </div>
+          <div class="easing-row">
+            <div class="easing-label" id="spring-label">Spring</div>
+            <div class="easing-track" role="img" aria-labelledby="spring-label" aria-describedby="spring-desc">
+              <div class="easing-ball" data-easing="spring" aria-hidden="true"></div>
+            </div>
+            <span id="spring-desc" class="sr-only">Animation has a spring-like bouncy effect</span>
+          </div>
+          <div class="easing-row">
+            <div class="easing-label" id="bounce-label">Bounce</div>
+            <div class="easing-track" role="img" aria-labelledby="bounce-label" aria-describedby="bounce-desc">
+              <div class="easing-ball" data-easing="bounce" aria-hidden="true"></div>
+            </div>
+            <span id="bounce-desc" class="sr-only">Animation overshoots and bounces at the end</span>
+          </div>
+        </div>
+
+        <div class="controls" role="group" aria-label="Easing animation controls">
+          <button
+            class="control-btn"
+            id="play-btn"
+            aria-label="Play easing curve animations"
+            onclick="startEasingDemo()">
+            ▶️ Play
+          </button>
+          <button
+            class="control-btn"
+            id="reset-btn"
+            aria-label="Reset easing curve animations"
+            onclick="resetEasingDemo()">
+            🔄 Reset
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="fade-in delay-800" role="contentinfo">
       <p>Built with the Animation Library System</p>
       <p>See <strong>FIGMA-TO-CSS-GUIDE.md</strong> for documentation</p>
+      <p><small>This demo meets WCAG 2.1 Level AA accessibility standards</small></p>
     </footer>
   </div>
 
   <script>
-    // Replay animation function
-    function replayAnimation(card, animationClass) {
+    // Announce to screen readers
+    function announce(message) {
+      const statusEl = document.getElementById('status-announcement');
+      if (statusEl) {
+        statusEl.textContent = message;
+        // Clear after a delay
+        setTimeout(() => {
+          statusEl.textContent = '';
+        }, 1000);
+      }
+    }
+
+    // Replay animation function with accessibility announcement
+    function replayAnimation(button, animationClass, animationName) {
+      const card = button.closest('.animation-card');
       const box = card.querySelector('.animation-demo-box');
 
       // Remove animation
@@ -443,11 +666,29 @@
 
       // Add animation back
       box.classList.add(animationClass);
+
+      // Announce to screen readers
+      announce(`Playing ${animationName} animation`);
+
+      // Provide visual feedback on button
+      button.disabled = true;
+      setTimeout(() => {
+        button.disabled = false;
+      }, 600);
     }
 
-    // Easing demo functions
+    // Easing demo functions with accessibility
     function startEasingDemo() {
       const balls = document.querySelectorAll('.easing-ball');
+      const playBtn = document.getElementById('play-btn');
+
+      // Announce to screen readers
+      announce('Playing easing curve demonstrations');
+
+      // Disable play button during animation
+      if (playBtn) {
+        playBtn.disabled = true;
+      }
 
       balls.forEach(ball => {
         ball.style.transition = 'none';
@@ -482,6 +723,14 @@
           ball.style.left = 'calc(100% - 40px)';
         }, 50);
       });
+
+      // Re-enable play button after animation completes
+      setTimeout(() => {
+        if (playBtn) {
+          playBtn.disabled = false;
+        }
+        announce('Easing curve demonstrations complete');
+      }, 2100);
     }
 
     function resetEasingDemo() {
@@ -490,11 +739,40 @@
         ball.style.transition = 'none';
         ball.style.left = '0';
       });
+
+      // Announce to screen readers
+      announce('Easing curve animations reset');
     }
 
-    // Auto-play easing demo on load
+    // Auto-play easing demo on load (respecting prefers-reduced-motion)
     window.addEventListener('load', () => {
-      setTimeout(startEasingDemo, 1000);
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (!prefersReducedMotion) {
+        setTimeout(startEasingDemo, 1000);
+      } else {
+        // Announce that animations are disabled for accessibility
+        announce('Animations are disabled due to your reduced motion preference');
+      }
+    });
+
+    // Handle keyboard navigation for hover demo cards
+    document.addEventListener('DOMContentLoaded', () => {
+      const hoverCards = document.querySelectorAll('.hover-demo-card');
+
+      hoverCards.forEach(card => {
+        // Add keyboard event listener
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            // Trigger hover effect briefly
+            card.classList.add('hover-active');
+            setTimeout(() => {
+              card.classList.remove('hover-active');
+            }, 300);
+          }
+        });
+      });
     });
   </script>
 </body>

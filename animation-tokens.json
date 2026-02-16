@@ -1,34 +1,28 @@
 {
   "duration": {
-    "instant": "100ms",
-    "fast": "200ms",
-    "normal": "300ms",
-    "moderate": "400ms",
-    "slow": "600ms",
-    "slower": "800ms"
+    "xs": "50ms",
+    "s": "150ms",
+    "m": "200ms",
+    "l": "400ms",
+    "xl": "600ms",
+    "xxl": "1000ms"
   },
   "easing": {
-    "linear": "linear",
-    "ease": "ease",
-    "ease-in": "cubic-bezier(0.42, 0, 1, 1)",
-    "ease-out": "cubic-bezier(0, 0, 0.58, 1)",
-    "ease-in-out": "cubic-bezier(0.42, 0, 0.58, 1)",
-    "ease-in-quad": "cubic-bezier(0.55, 0.085, 0.68, 0.53)",
-    "ease-out-quad": "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-    "ease-in-out-quad": "cubic-bezier(0.455, 0.03, 0.515, 0.955)",
-    "ease-in-cubic": "cubic-bezier(0.55, 0.055, 0.675, 0.19)",
-    "ease-out-cubic": "cubic-bezier(0.215, 0.61, 0.355, 1)",
-    "ease-in-out-cubic": "cubic-bezier(0.645, 0.045, 0.355, 1)",
-    "ease-in-back": "cubic-bezier(0.6, -0.28, 0.735, 0.045)",
-    "ease-out-back": "cubic-bezier(0.175, 0.885, 0.32, 1.275)",
-    "ease-in-out-back": "cubic-bezier(0.68, -0.55, 0.265, 1.55)",
-    "spring": "cubic-bezier(0.16, 1, 0.3, 1)",
-    "bounce": "cubic-bezier(0.68, -0.55, 0.265, 1.55)"
+    "linear": "cubic-bezier(0, 0, 0, 0)",
+    "standard": "cubic-bezier(0.35, 0, 0.63, 1)",
+    "emphasized-accelerate": "cubic-bezier(0.3, 0.0, 0.8, 0.15)",
+    "emphasized-decelerate": "cubic-bezier(0.05, 0.7, 0.1, 1.0)",
+    "regular-accelerate": "cubic-bezier(0.3, 0, 1, 1)",
+    "regular-decelerate": "cubic-bezier(0, 0, 0, 1)",
+    "legacy-emphasized-accelerate": "cubic-bezier(0.7, 0, 0.8, 0)",
+    "legacy-emphasized-decelerate": "cubic-bezier(0.08, 0.7, 0.12, 1.17)",
+    "legacy-regular-accelerate": "cubic-bezier(0.6, 0, 1, 1)",
+    "legacy-regular-decelerate": "cubic-bezier(0, 0, 0.3, 1.1)"
   },
   "animations": {
     "fade-in": {
-      "duration": "300ms",
-      "easing": "ease-out",
+      "duration": "m",
+      "easing": "regular-decelerate",
       "description": "Simple fade in from transparent to opaque",
       "properties": {
         "from": { "opacity": 0 },
@@ -36,8 +30,8 @@
       }
     },
     "fade-out": {
-      "duration": "300ms",
-      "easing": "ease-in",
+      "duration": "m",
+      "easing": "regular-accelerate",
       "description": "Simple fade out from opaque to transparent",
       "properties": {
         "from": { "opacity": 1 },
@@ -45,8 +39,8 @@
       }
     },
     "slide-up": {
-      "duration": "400ms",
-      "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "duration": "l",
+      "easing": "emphasized-decelerate",
       "description": "Slide in from bottom with smooth easing",
       "properties": {
         "from": {
@@ -60,8 +54,8 @@
       }
     },
     "slide-down": {
-      "duration": "400ms",
-      "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "duration": "l",
+      "easing": "emphasized-decelerate",
       "description": "Slide in from top with smooth easing",
       "properties": {
         "from": {
@@ -75,8 +69,8 @@
       }
     },
     "slide-left": {
-      "duration": "400ms",
-      "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "duration": "l",
+      "easing": "emphasized-decelerate",
       "description": "Slide in from right",
       "properties": {
         "from": {
@@ -90,8 +84,8 @@
       }
     },
     "slide-right": {
-      "duration": "400ms",
-      "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "duration": "l",
+      "easing": "emphasized-decelerate",
       "description": "Slide in from left",
       "properties": {
         "from": {
@@ -105,8 +99,8 @@
       }
     },
     "scale-up": {
-      "duration": "300ms",
-      "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "duration": "m",
+      "easing": "emphasized-decelerate",
       "description": "Scale from smaller to normal size",
       "properties": {
         "from": {
@@ -120,8 +114,8 @@
       }
     },
     "scale-down": {
-      "duration": "300ms",
-      "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "duration": "m",
+      "easing": "emphasized-decelerate",
       "description": "Scale from larger to normal size",
       "properties": {
         "from": {
@@ -135,8 +129,8 @@
       }
     },
     "zoom-in": {
-      "duration": "400ms",
-      "easing": "ease-out",
+      "duration": "l",
+      "easing": "regular-decelerate",
       "description": "Zoom in effect with fade",
       "properties": {
         "from": {
@@ -150,8 +144,8 @@
       }
     },
     "zoom-out": {
-      "duration": "400ms",
-      "easing": "ease-in",
+      "duration": "l",
+      "easing": "regular-accelerate",
       "description": "Zoom out effect with fade",
       "properties": {
         "from": {
@@ -165,8 +159,8 @@
       }
     },
     "rotate-in": {
-      "duration": "500ms",
-      "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "duration": "xl",
+      "easing": "emphasized-decelerate",
       "description": "Rotate and fade in",
       "properties": {
         "from": {
@@ -180,8 +174,8 @@
       }
     },
     "bounce-in": {
-      "duration": "600ms",
-      "easing": "cubic-bezier(0.68, -0.55, 0.265, 1.55)",
+      "duration": "xl",
+      "easing": "legacy-emphasized-decelerate",
       "description": "Bounce effect on entry",
       "properties": {
         "from": {
@@ -195,8 +189,8 @@
       }
     },
     "shake": {
-      "duration": "500ms",
-      "easing": "ease-in-out",
+      "duration": "xl",
+      "easing": "standard",
       "description": "Shake animation for errors or attention",
       "keyframes": {
         "0%, 100%": { "transform": "translateX(0)" },
@@ -205,8 +199,8 @@
       }
     },
     "pulse": {
-      "duration": "1000ms",
-      "easing": "ease-in-out",
+      "duration": "xxl",
+      "easing": "standard",
       "description": "Pulsing scale animation",
       "keyframes": {
         "0%, 100%": { "transform": "scale(1)" },
@@ -214,7 +208,7 @@
       }
     },
     "spin": {
-      "duration": "1000ms",
+      "duration": "xxl",
       "easing": "linear",
       "description": "Continuous rotation (for loaders)",
       "keyframes": {

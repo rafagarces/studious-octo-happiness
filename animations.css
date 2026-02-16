@@ -13,31 +13,27 @@
    ============================================ */
 
 :root {
-  /* Duration Variables */
-  --duration-instant: 100ms;
-  --duration-fast: 200ms;
-  --duration-normal: 300ms;
-  --duration-moderate: 400ms;
-  --duration-slow: 600ms;
-  --duration-slower: 800ms;
+  /* Duration Variables - Figma Material Design Conventions */
+  --duration-xs: 50ms;
+  --duration-s: 150ms;
+  --duration-m: 200ms;
+  --duration-l: 400ms;
+  --duration-xl: 600ms;
+  --duration-xxl: 1000ms;
 
-  /* Easing Variables */
-  --easing-linear: linear;
-  --easing-ease: ease;
-  --easing-ease-in: cubic-bezier(0.42, 0, 1, 1);
-  --easing-ease-out: cubic-bezier(0, 0, 0.58, 1);
-  --easing-ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);
-  --easing-ease-in-quad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
-  --easing-ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  --easing-ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
-  --easing-ease-in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-  --easing-ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
-  --easing-ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
-  --easing-ease-in-back: cubic-bezier(0.6, -0.28, 0.735, 0.045);
-  --easing-ease-out-back: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  --easing-ease-in-out-back: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  --easing-spring: cubic-bezier(0.16, 1, 0.3, 1);
-  --easing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  /* Easing Variables - Figma Material Design Conventions */
+  --easing-linear: cubic-bezier(0, 0, 0, 0);
+  --easing-standard: cubic-bezier(0.35, 0, 0.63, 1);
+  --easing-emphasized-accelerate: cubic-bezier(0.3, 0.0, 0.8, 0.15);
+  --easing-emphasized-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1.0);
+  --easing-regular-accelerate: cubic-bezier(0.3, 0, 1, 1);
+  --easing-regular-decelerate: cubic-bezier(0, 0, 0, 1);
+
+  /* Legacy Bezier Curves (from original Figma spec) */
+  --easing-legacy-emphasized-accelerate: cubic-bezier(0.7, 0, 0.8, 0);
+  --easing-legacy-emphasized-decelerate: cubic-bezier(0.08, 0.7, 0.12, 1.17);
+  --easing-legacy-regular-accelerate: cubic-bezier(0.6, 0, 1, 1);
+  --easing-legacy-regular-decelerate: cubic-bezier(0, 0, 0.3, 1.1);
 }
 
 /* ============================================
@@ -223,77 +219,77 @@
 
 /* Fade In - Simple fade in from transparent to opaque */
 .fade-in {
-  animation: fade-in 300ms var(--easing-ease-out) both;
+  animation: fade-in var(--duration-m) var(--easing-regular-decelerate) both;
 }
 
 /* Fade Out - Simple fade out from opaque to transparent */
 .fade-out {
-  animation: fade-out 300ms var(--easing-ease-in) both;
+  animation: fade-out var(--duration-m) var(--easing-regular-accelerate) both;
 }
 
 /* Slide Up - Slide in from bottom with smooth easing */
 .slide-up {
-  animation: slide-up 400ms var(--easing-spring) both;
+  animation: slide-up var(--duration-l) var(--easing-emphasized-decelerate) both;
 }
 
 /* Slide Down - Slide in from top with smooth easing */
 .slide-down {
-  animation: slide-down 400ms var(--easing-spring) both;
+  animation: slide-down var(--duration-l) var(--easing-emphasized-decelerate) both;
 }
 
 /* Slide Left - Slide in from right */
 .slide-left {
-  animation: slide-left 400ms var(--easing-spring) both;
+  animation: slide-left var(--duration-l) var(--easing-emphasized-decelerate) both;
 }
 
 /* Slide Right - Slide in from left */
 .slide-right {
-  animation: slide-right 400ms var(--easing-spring) both;
+  animation: slide-right var(--duration-l) var(--easing-emphasized-decelerate) both;
 }
 
 /* Scale Up - Scale from smaller to normal size */
 .scale-up {
-  animation: scale-up 300ms var(--easing-spring) both;
+  animation: scale-up var(--duration-m) var(--easing-emphasized-decelerate) both;
 }
 
 /* Scale Down - Scale from larger to normal size */
 .scale-down {
-  animation: scale-down 300ms var(--easing-spring) both;
+  animation: scale-down var(--duration-m) var(--easing-emphasized-decelerate) both;
 }
 
 /* Zoom In - Zoom in effect with fade */
 .zoom-in {
-  animation: zoom-in 400ms var(--easing-ease-out) both;
+  animation: zoom-in var(--duration-l) var(--easing-regular-decelerate) both;
 }
 
 /* Zoom Out - Zoom out effect with fade */
 .zoom-out {
-  animation: zoom-out 400ms var(--easing-ease-in) both;
+  animation: zoom-out var(--duration-l) var(--easing-regular-accelerate) both;
 }
 
 /* Rotate In - Rotate and fade in */
 .rotate-in {
-  animation: rotate-in 500ms var(--easing-spring) both;
+  animation: rotate-in var(--duration-xl) var(--easing-emphasized-decelerate) both;
 }
 
 /* Bounce In - Bounce effect on entry */
 .bounce-in {
-  animation: bounce-in 600ms var(--easing-bounce) both;
+  animation: bounce-in var(--duration-xl) var(--easing-legacy-emphasized-decelerate) both;
 }
 
 /* Shake - Shake animation for errors or attention */
 .shake {
-  animation: shake 500ms ease-in-out both;
+  animation: shake var(--duration-xl) var(--easing-standard) both;
 }
 
 /* Pulse - Pulsing scale animation */
 .pulse {
-  animation: pulse 1000ms ease-in-out both;
+  animation: pulse var(--duration-xxl) var(--easing-standard) both;
 }
 
 /* Spin - Continuous rotation (for loaders) */
 .spin {
-  animation: spin 1000ms linear infinite;
+  animation: spin var(--duration-xxl) var(--easing-linear) infinite;
 }
 
 /* ============================================
@@ -336,28 +332,28 @@
    ANIMATION DURATION UTILITIES
    ============================================ */
 
-.duration-instant {
-  animation-duration: var(--duration-instant);
+.duration-xs {
+  animation-duration: var(--duration-xs);
 }
 
-.duration-fast {
-  animation-duration: var(--duration-fast);
+.duration-s {
+  animation-duration: var(--duration-s);
 }
 
-.duration-normal {
-  animation-duration: var(--duration-normal);
+.duration-m {
+  animation-duration: var(--duration-m);
 }
 
-.duration-moderate {
-  animation-duration: var(--duration-moderate);
+.duration-l {
+  animation-duration: var(--duration-l);
 }
 
-.duration-slow {
-  animation-duration: var(--duration-slow);
+.duration-xl {
+  animation-duration: var(--duration-xl);
 }
 
-.duration-slower {
-  animation-duration: var(--duration-slower);
+.duration-xxl {
+  animation-duration: var(--duration-xxl);
 }
 
 /* ============================================
@@ -365,7 +361,7 @@
    ============================================ */
 
 .hover-scale {
-  transition: transform var(--duration-normal) var(--easing-ease-out);
+  transition: transform var(--duration-m) var(--easing-regular-decelerate);
 }
 
 .hover-scale:hover {
@@ -373,8 +369,8 @@
 }
 
 .hover-lift {
-  transition: transform var(--duration-normal) var(--easing-ease-out),
-              box-shadow var(--duration-normal) var(--easing-ease-out);
+  transition: transform var(--duration-m) var(--easing-regular-decelerate),
+              box-shadow var(--duration-m) var(--easing-regular-decelerate);
 }
 
 .hover-lift:hover {
@@ -383,7 +379,7 @@
 }
 
 .hover-fade {
-  transition: opacity var(--duration-normal) var(--easing-ease-out);
+  transition: opacity var(--duration-m) var(--easing-regular-decelerate);
 }
 
 .hover-fade:hover {

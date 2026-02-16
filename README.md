@@ -6,6 +6,15 @@ A complete solution for converting Figma animations to CSS, designed for collabo
 
 This animation system bridges the gap between Figma prototypes and CSS implementation, making it easy for non-technical designers to communicate animation requirements to developers.
 
+### ✨ Figma Material Design Aligned
+
+The system uses **Figma Material Design** naming conventions:
+- **Durations**: XS (50ms), S (150ms), M (200ms), L (400ms), XL (600ms), XXL (1000ms)
+- **Easing Curves**: Emphasized Decelerate, Regular Accelerate, Standard, and more
+- **Direct mapping** from Figma animation specs to CSS implementation
+
+See **`FIGMA-ALIGNMENT.md`** for complete details on the naming conventions and migration guide.
+
 ## 📦 What's Included
 
 ### Core Files
@@ -29,17 +38,28 @@ This animation system bridges the gap between Figma prototypes and CSS implement
 
 ### Documentation
 
-4. **`FIGMA-TO-CSS-GUIDE.md`** 📘
+4. **`FIGMA-ALIGNMENT.md`** 🎨
+   - **Material Design alignment:** How the system matches Figma conventions
+   - Duration and easing mapping (XS/S/M/L/XL/XXL)
+   - Migration guide from old to new naming
+   - Designer-to-developer workflow
+
+5. **`FIGMA-TO-CSS-GUIDE.md`** 📘
    - **For designers:** Step-by-step guide to document Figma animations
    - Simple templates and examples
    - No technical knowledge required
    - Pre-built animation reference
 
-5. **`EASING-REFERENCE.md`** 📐
+6. **`EASING-REFERENCE.md`** 📐
    - Complete Figma-to-CSS easing conversion guide
    - Visual representations of easing curves
    - Decision-making guide for choosing easings
    - Technical specifications and cubic-bezier values
+
+7. **`ACCESSIBILITY.md`** ♿
+   - WCAG 2.1 Level AA compliance documentation
+   - Keyboard navigation and screen reader support
+   - Testing guidelines and checklists
 
 ## 🚀 Quick Start
 

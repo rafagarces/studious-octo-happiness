@@ -1,0 +1,405 @@
+/**
+ * Animation Library
+ * Generated from animation-tokens.json
+ *
+ * Usage:
+ * 1. Include this CSS file in your project
+ * 2. Add animation classes to elements: class="fade-in"
+ * 3. Or use custom animations with animation property
+ */
+
+/* ============================================
+   CSS CUSTOM PROPERTIES (CSS Variables)
+   ============================================ */
+
+:root {
+  /* Duration Variables */
+  --duration-instant: 100ms;
+  --duration-fast: 200ms;
+  --duration-normal: 300ms;
+  --duration-moderate: 400ms;
+  --duration-slow: 600ms;
+  --duration-slower: 800ms;
+
+  /* Easing Variables */
+  --easing-linear: linear;
+  --easing-ease: ease;
+  --easing-ease-in: cubic-bezier(0.42, 0, 1, 1);
+  --easing-ease-out: cubic-bezier(0, 0, 0.58, 1);
+  --easing-ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);
+  --easing-ease-in-quad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  --easing-ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --easing-ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  --easing-ease-in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  --easing-ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+  --easing-ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+  --easing-ease-in-back: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  --easing-ease-out-back: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --easing-ease-in-out-back: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --easing-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --easing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* ============================================
+   KEYFRAME DEFINITIONS
+   ============================================ */
+
+/* Fade In */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Fade Out */
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Slide Up */
+@keyframes slide-up {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Slide Down */
+@keyframes slide-down {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Slide Left */
+@keyframes slide-left {
+  from {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Slide Right */
+@keyframes slide-right {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Scale Up */
+@keyframes scale-up {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Scale Down */
+@keyframes scale-down {
+  from {
+    transform: scale(1.05);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Zoom In */
+@keyframes zoom-in {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Zoom Out */
+@keyframes zoom-out {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+}
+
+/* Rotate In */
+@keyframes rotate-in {
+  from {
+    transform: rotate(-5deg) scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Bounce In */
+@keyframes bounce-in {
+  from {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Shake */
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-5px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(5px);
+  }
+}
+
+/* Pulse */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Spin */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+/* Fade In - Simple fade in from transparent to opaque */
+.fade-in {
+  animation: fade-in 300ms var(--easing-ease-out) both;
+}
+
+/* Fade Out - Simple fade out from opaque to transparent */
+.fade-out {
+  animation: fade-out 300ms var(--easing-ease-in) both;
+}
+
+/* Slide Up - Slide in from bottom with smooth easing */
+.slide-up {
+  animation: slide-up 400ms var(--easing-spring) both;
+}
+
+/* Slide Down - Slide in from top with smooth easing */
+.slide-down {
+  animation: slide-down 400ms var(--easing-spring) both;
+}
+
+/* Slide Left - Slide in from right */
+.slide-left {
+  animation: slide-left 400ms var(--easing-spring) both;
+}
+
+/* Slide Right - Slide in from left */
+.slide-right {
+  animation: slide-right 400ms var(--easing-spring) both;
+}
+
+/* Scale Up - Scale from smaller to normal size */
+.scale-up {
+  animation: scale-up 300ms var(--easing-spring) both;
+}
+
+/* Scale Down - Scale from larger to normal size */
+.scale-down {
+  animation: scale-down 300ms var(--easing-spring) both;
+}
+
+/* Zoom In - Zoom in effect with fade */
+.zoom-in {
+  animation: zoom-in 400ms var(--easing-ease-out) both;
+}
+
+/* Zoom Out - Zoom out effect with fade */
+.zoom-out {
+  animation: zoom-out 400ms var(--easing-ease-in) both;
+}
+
+/* Rotate In - Rotate and fade in */
+.rotate-in {
+  animation: rotate-in 500ms var(--easing-spring) both;
+}
+
+/* Bounce In - Bounce effect on entry */
+.bounce-in {
+  animation: bounce-in 600ms var(--easing-bounce) both;
+}
+
+/* Shake - Shake animation for errors or attention */
+.shake {
+  animation: shake 500ms ease-in-out both;
+}
+
+/* Pulse - Pulsing scale animation */
+.pulse {
+  animation: pulse 1000ms ease-in-out both;
+}
+
+/* Spin - Continuous rotation (for loaders) */
+.spin {
+  animation: spin 1000ms linear infinite;
+}
+
+/* ============================================
+   ANIMATION DELAY UTILITIES
+   ============================================ */
+
+.delay-100 {
+  animation-delay: 100ms;
+}
+
+.delay-200 {
+  animation-delay: 200ms;
+}
+
+.delay-300 {
+  animation-delay: 300ms;
+}
+
+.delay-400 {
+  animation-delay: 400ms;
+}
+
+.delay-500 {
+  animation-delay: 500ms;
+}
+
+.delay-600 {
+  animation-delay: 600ms;
+}
+
+.delay-800 {
+  animation-delay: 800ms;
+}
+
+.delay-1000 {
+  animation-delay: 1000ms;
+}
+
+/* ============================================
+   ANIMATION DURATION UTILITIES
+   ============================================ */
+
+.duration-instant {
+  animation-duration: var(--duration-instant);
+}
+
+.duration-fast {
+  animation-duration: var(--duration-fast);
+}
+
+.duration-normal {
+  animation-duration: var(--duration-normal);
+}
+
+.duration-moderate {
+  animation-duration: var(--duration-moderate);
+}
+
+.duration-slow {
+  animation-duration: var(--duration-slow);
+}
+
+.duration-slower {
+  animation-duration: var(--duration-slower);
+}
+
+/* ============================================
+   HOVER TRANSITIONS
+   ============================================ */
+
+.hover-scale {
+  transition: transform var(--duration-normal) var(--easing-ease-out);
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.hover-lift {
+  transition: transform var(--duration-normal) var(--easing-ease-out),
+              box-shadow var(--duration-normal) var(--easing-ease-out);
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.hover-fade {
+  transition: opacity var(--duration-normal) var(--easing-ease-out);
+}
+
+.hover-fade:hover {
+  opacity: 0.8;
+}
+
+/* ============================================
+   REDUCED MOTION SUPPORT
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

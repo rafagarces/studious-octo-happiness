@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animation Library Demo</title>
+  <link rel="stylesheet" href="animations.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 40px 20px;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 60px;
+      color: white;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    .section {
+      background: white;
+      border-radius: 16px;
+      padding: 40px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .section h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #667eea;
+    }
+
+    .section-description {
+      color: #666;
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+    }
+
+    .animation-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      margin-top: 30px;
+    }
+
+    .animation-card {
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 30px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 2px solid transparent;
+    }
+
+    .animation-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      border-color: #667eea;
+    }
+
+    .animation-demo-box {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 12px;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .animation-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    .animation-card p {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 15px;
+    }
+
+    .replay-btn {
+      background: #667eea;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+
+    .replay-btn:hover {
+      background: #5568d3;
+    }
+
+    .code-block {
+      background: #2d3748;
+      color: #e2e8f0;
+      padding: 20px;
+      border-radius: 8px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      margin-top: 20px;
+      overflow-x: auto;
+    }
+
+    .code-block code {
+      color: #81e6d9;
+    }
+
+    .hover-demo-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      margin-top: 30px;
+    }
+
+    .hover-demo-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 40px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .easing-demo {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .easing-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .easing-label {
+      min-width: 150px;
+      font-weight: 600;
+      color: #667eea;
+    }
+
+    .easing-track {
+      flex: 1;
+      height: 40px;
+      background: #f1f1f1;
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .easing-ball {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 50%;
+      position: absolute;
+      left: 0;
+    }
+
+    .controls {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .control-btn {
+      background: #667eea;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0 8px;
+      transition: background 0.2s;
+    }
+
+    .control-btn:hover {
+      background: #5568d3;
+    }
+
+    footer {
+      text-align: center;
+      color: white;
+      margin-top: 60px;
+      padding: 20px;
+      opacity: 0.9;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      .section {
+        padding: 24px;
+      }
+
+      .animation-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="fade-in">
+      <h1>🎬 Animation Library Demo</h1>
+      <p>Click any animation to see it in action</p>
+    </header>
+
+    <!-- Entry Animations -->
+    <section class="section slide-up">
+      <h2>Entry Animations</h2>
+      <p class="section-description">Animations for elements appearing on the page</p>
+
+      <div class="animation-grid">
+        <div class="animation-card" onclick="replayAnimation(this, 'fade-in')">
+          <div class="animation-demo-box">✨</div>
+          <h3>Fade In</h3>
+          <p>Simple fade from transparent to opaque</p>
+          <button class="replay-btn">Click to Replay</button>
+        </div>
+
+        <div class="animation-card" onclick="replayAnimation(this, 'slide-up')">
+          <div class="animation-demo-box">⬆️</div>
+          <h3>Slide Up</h3>
+          <p>Slides in from bottom</p>
+          <button class="replay-btn">Click to Replay</button>
+        </div>
+
+        <div class="animation-card" onclick="replayAnimation(this, 'slide-down')">
+          <div class="animation-demo-box">⬇️</div>
+          <h3>Slide Down</h3>
+          <p>Slides in from top</p>
+          <button class="replay-btn">Click to Replay</button>
+        </div>
+
+        <div class="animation-card" onclick="replayAnimation(this, 'slide-left')">
+          <div class="animation-demo-box">⬅️</div>
+          <h3>Slide Left</h3>
+          <p>Slides in from right</p>
+          <button class="replay-btn">Click to Replay</button>
+        </div>
+
+        <div class="animation-card" onclick="replayAnimation(this, 'slide-right')">
+          <div class="animation-demo-box">➡️</div>
+          <h3>Slide Right</h3>
+          <p>Slides in from left</p>
+          <button class="replay-btn">Click to Replay</button>
+        </div>
+
+        <div class="animation-card" onclick="replayAnimation(this, 'scale-up')">
+          <div class="animation-demo-box">📈</div>
+          <h3>Scale Up</h3>
+          <p>Grows from smaller size</p>
+          <button class="replay-btn">Click to Replay</button>
+        </div>
+
+        <div class="animation-card" onclick="replayAnimation(this, 'zoom-in')">
+          <div class="animation-demo-box">🔍</div>
+          <h3>Zoom In</h3>
+          <p>Dramatic zoom with fade</p>
+          <button class="replay-btn">Click to Replay</button>
+        </div>
+
+        <div class="animation-card" onclick="replayAnimation(this, 'rotate-in')">
+          <div class="animation-demo-box">🔄</div>
+          <h3>Rotate In</h3>
+          <p>Rotates while appearing</p>
+          <button class="replay-btn">Click to Replay</button>
+        </div>
+
+        <div class="animation-card" onclick="replayAnimation(this, 'bounce-in')">
+          <div class="animation-demo-box">🎾</div>
+          <h3>Bounce In</h3>
+          <p>Bouncy entrance effect</p>
+          <button class="replay-btn">Click to Replay</button>
+        </div>
+      </div>
+
+      <div class="code-block">
+        <code>&lt;div class="fade-in"&gt;Your content&lt;/div&gt;</code>
+      </div>
+    </section>
+
+    <!-- Attention Animations -->
+    <section class="section slide-up delay-200">
+      <h2>Attention Animations</h2>
+      <p class="section-description">Animations to draw user attention</p>
+
+      <div class="animation-grid">
+        <div class="animation-card" onclick="replayAnimation(this, 'shake')">
+          <div class="animation-demo-box">🚨</div>
+          <h3>Shake</h3>
+          <p>Shake for errors or alerts</p>
+          <button class="replay-btn">Click to Replay</button>
+        </div>
+
+        <div class="animation-card" onclick="replayAnimation(this, 'pulse')">
+          <div class="animation-demo-box">💓</div>
+          <h3>Pulse</h3>
+          <p>Gentle breathing effect</p>
+          <button class="replay-btn">Click to Replay</button>
+        </div>
+
+        <div class="animation-card" onclick="replayAnimation(this, 'spin')">
+          <div class="animation-demo-box">⚙️</div>
+          <h3>Spin</h3>
+          <p>Continuous rotation</p>
+          <button class="replay-btn">Click to Replay</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hover Effects -->
+    <section class="section slide-up delay-400">
+      <h2>Hover Effects</h2>
+      <p class="section-description">Interactive hover transitions (hover over the cards)</p>
+
+      <div class="hover-demo-section">
+        <div class="hover-demo-card hover-scale">
+          Hover Scale
+        </div>
+        <div class="hover-demo-card hover-lift">
+          Hover Lift
+        </div>
+        <div class="hover-demo-card hover-fade">
+          Hover Fade
+        </div>
+      </div>
+
+      <div class="code-block">
+        <code>&lt;button class="hover-scale"&gt;Hover me&lt;/button&gt;</code>
+      </div>
+    </section>
+
+    <!-- Easing Comparison -->
+    <section class="section slide-up delay-600">
+      <h2>Easing Curves</h2>
+      <p class="section-description">See how different easing curves affect animation timing</p>
+
+      <div class="easing-demo">
+        <div class="easing-row">
+          <div class="easing-label">Linear</div>
+          <div class="easing-track">
+            <div class="easing-ball" data-easing="linear"></div>
+          </div>
+        </div>
+        <div class="easing-row">
+          <div class="easing-label">Ease Out</div>
+          <div class="easing-track">
+            <div class="easing-ball" data-easing="ease-out"></div>
+          </div>
+        </div>
+        <div class="easing-row">
+          <div class="easing-label">Ease In</div>
+          <div class="easing-track">
+            <div class="easing-ball" data-easing="ease-in"></div>
+          </div>
+        </div>
+        <div class="easing-row">
+          <div class="easing-label">Ease In-Out</div>
+          <div class="easing-track">
+            <div class="easing-ball" data-easing="ease-in-out"></div>
+          </div>
+        </div>
+        <div class="easing-row">
+          <div class="easing-label">Spring</div>
+          <div class="easing-track">
+            <div class="easing-ball" data-easing="spring"></div>
+          </div>
+        </div>
+        <div class="easing-row">
+          <div class="easing-label">Bounce</div>
+          <div class="easing-track">
+            <div class="easing-ball" data-easing="bounce"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button class="control-btn" onclick="startEasingDemo()">▶️ Play</button>
+        <button class="control-btn" onclick="resetEasingDemo()">🔄 Reset</button>
+      </div>
+    </section>
+
+    <footer class="fade-in delay-800">
+      <p>Built with the Animation Library System</p>
+      <p>See <strong>FIGMA-TO-CSS-GUIDE.md</strong> for documentation</p>
+    </footer>
+  </div>
+
+  <script>
+    // Replay animation function
+    function replayAnimation(card, animationClass) {
+      const box = card.querySelector('.animation-demo-box');
+
+      // Remove animation
+      box.classList.remove(animationClass);
+
+      // Trigger reflow
+      void box.offsetWidth;
+
+      // Add animation back
+      box.classList.add(animationClass);
+    }
+
+    // Easing demo functions
+    function startEasingDemo() {
+      const balls = document.querySelectorAll('.easing-ball');
+
+      balls.forEach(ball => {
+        ball.style.transition = 'none';
+        ball.style.left = '0';
+
+        setTimeout(() => {
+          const easing = ball.getAttribute('data-easing');
+          let timingFunction;
+
+          switch(easing) {
+            case 'linear':
+              timingFunction = 'linear';
+              break;
+            case 'ease-out':
+              timingFunction = 'cubic-bezier(0, 0, 0.58, 1)';
+              break;
+            case 'ease-in':
+              timingFunction = 'cubic-bezier(0.42, 0, 1, 1)';
+              break;
+            case 'ease-in-out':
+              timingFunction = 'cubic-bezier(0.42, 0, 0.58, 1)';
+              break;
+            case 'spring':
+              timingFunction = 'cubic-bezier(0.16, 1, 0.3, 1)';
+              break;
+            case 'bounce':
+              timingFunction = 'cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+              break;
+          }
+
+          ball.style.transition = `left 2s ${timingFunction}`;
+          ball.style.left = 'calc(100% - 40px)';
+        }, 50);
+      });
+    }
+
+    function resetEasingDemo() {
+      const balls = document.querySelectorAll('.easing-ball');
+      balls.forEach(ball => {
+        ball.style.transition = 'none';
+        ball.style.left = '0';
+      });
+    }
+
+    // Auto-play easing demo on load
+    window.addEventListener('load', () => {
+      setTimeout(startEasingDemo, 1000);
+    });
+  </script>
+</body>
+</html>

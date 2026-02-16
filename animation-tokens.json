@@ -1,0 +1,226 @@
+{
+  "duration": {
+    "instant": "100ms",
+    "fast": "200ms",
+    "normal": "300ms",
+    "moderate": "400ms",
+    "slow": "600ms",
+    "slower": "800ms"
+  },
+  "easing": {
+    "linear": "linear",
+    "ease": "ease",
+    "ease-in": "cubic-bezier(0.42, 0, 1, 1)",
+    "ease-out": "cubic-bezier(0, 0, 0.58, 1)",
+    "ease-in-out": "cubic-bezier(0.42, 0, 0.58, 1)",
+    "ease-in-quad": "cubic-bezier(0.55, 0.085, 0.68, 0.53)",
+    "ease-out-quad": "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+    "ease-in-out-quad": "cubic-bezier(0.455, 0.03, 0.515, 0.955)",
+    "ease-in-cubic": "cubic-bezier(0.55, 0.055, 0.675, 0.19)",
+    "ease-out-cubic": "cubic-bezier(0.215, 0.61, 0.355, 1)",
+    "ease-in-out-cubic": "cubic-bezier(0.645, 0.045, 0.355, 1)",
+    "ease-in-back": "cubic-bezier(0.6, -0.28, 0.735, 0.045)",
+    "ease-out-back": "cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+    "ease-in-out-back": "cubic-bezier(0.68, -0.55, 0.265, 1.55)",
+    "spring": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "bounce": "cubic-bezier(0.68, -0.55, 0.265, 1.55)"
+  },
+  "animations": {
+    "fade-in": {
+      "duration": "300ms",
+      "easing": "ease-out",
+      "description": "Simple fade in from transparent to opaque",
+      "properties": {
+        "from": { "opacity": 0 },
+        "to": { "opacity": 1 }
+      }
+    },
+    "fade-out": {
+      "duration": "300ms",
+      "easing": "ease-in",
+      "description": "Simple fade out from opaque to transparent",
+      "properties": {
+        "from": { "opacity": 1 },
+        "to": { "opacity": 0 }
+      }
+    },
+    "slide-up": {
+      "duration": "400ms",
+      "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "description": "Slide in from bottom with smooth easing",
+      "properties": {
+        "from": {
+          "transform": "translateY(20px)",
+          "opacity": 0
+        },
+        "to": {
+          "transform": "translateY(0)",
+          "opacity": 1
+        }
+      }
+    },
+    "slide-down": {
+      "duration": "400ms",
+      "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "description": "Slide in from top with smooth easing",
+      "properties": {
+        "from": {
+          "transform": "translateY(-20px)",
+          "opacity": 0
+        },
+        "to": {
+          "transform": "translateY(0)",
+          "opacity": 1
+        }
+      }
+    },
+    "slide-left": {
+      "duration": "400ms",
+      "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "description": "Slide in from right",
+      "properties": {
+        "from": {
+          "transform": "translateX(20px)",
+          "opacity": 0
+        },
+        "to": {
+          "transform": "translateX(0)",
+          "opacity": 1
+        }
+      }
+    },
+    "slide-right": {
+      "duration": "400ms",
+      "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "description": "Slide in from left",
+      "properties": {
+        "from": {
+          "transform": "translateX(-20px)",
+          "opacity": 0
+        },
+        "to": {
+          "transform": "translateX(0)",
+          "opacity": 1
+        }
+      }
+    },
+    "scale-up": {
+      "duration": "300ms",
+      "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "description": "Scale from smaller to normal size",
+      "properties": {
+        "from": {
+          "transform": "scale(0.95)",
+          "opacity": 0
+        },
+        "to": {
+          "transform": "scale(1)",
+          "opacity": 1
+        }
+      }
+    },
+    "scale-down": {
+      "duration": "300ms",
+      "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "description": "Scale from larger to normal size",
+      "properties": {
+        "from": {
+          "transform": "scale(1.05)",
+          "opacity": 0
+        },
+        "to": {
+          "transform": "scale(1)",
+          "opacity": 1
+        }
+      }
+    },
+    "zoom-in": {
+      "duration": "400ms",
+      "easing": "ease-out",
+      "description": "Zoom in effect with fade",
+      "properties": {
+        "from": {
+          "transform": "scale(0.8)",
+          "opacity": 0
+        },
+        "to": {
+          "transform": "scale(1)",
+          "opacity": 1
+        }
+      }
+    },
+    "zoom-out": {
+      "duration": "400ms",
+      "easing": "ease-in",
+      "description": "Zoom out effect with fade",
+      "properties": {
+        "from": {
+          "transform": "scale(1)",
+          "opacity": 1
+        },
+        "to": {
+          "transform": "scale(0.8)",
+          "opacity": 0
+        }
+      }
+    },
+    "rotate-in": {
+      "duration": "500ms",
+      "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "description": "Rotate and fade in",
+      "properties": {
+        "from": {
+          "transform": "rotate(-5deg) scale(0.95)",
+          "opacity": 0
+        },
+        "to": {
+          "transform": "rotate(0deg) scale(1)",
+          "opacity": 1
+        }
+      }
+    },
+    "bounce-in": {
+      "duration": "600ms",
+      "easing": "cubic-bezier(0.68, -0.55, 0.265, 1.55)",
+      "description": "Bounce effect on entry",
+      "properties": {
+        "from": {
+          "transform": "scale(0.3)",
+          "opacity": 0
+        },
+        "to": {
+          "transform": "scale(1)",
+          "opacity": 1
+        }
+      }
+    },
+    "shake": {
+      "duration": "500ms",
+      "easing": "ease-in-out",
+      "description": "Shake animation for errors or attention",
+      "keyframes": {
+        "0%, 100%": { "transform": "translateX(0)" },
+        "10%, 30%, 50%, 70%, 90%": { "transform": "translateX(-5px)" },
+        "20%, 40%, 60%, 80%": { "transform": "translateX(5px)" }
+      }
+    },
+    "pulse": {
+      "duration": "1000ms",
+      "easing": "ease-in-out",
+      "description": "Pulsing scale animation",
+      "keyframes": {
+        "0%, 100%": { "transform": "scale(1)" },
+        "50%": { "transform": "scale(1.05)" }
+      }
+    },
+    "spin": {
+      "duration": "1000ms",
+      "easing": "linear",
+      "description": "Continuous rotation (for loaders)",
+      "keyframes": {
+        "from": { "transform": "rotate(0deg)" },
+        "to": { "transform": "rotate(360deg)" }
+      }
+    }
+  }
+}
